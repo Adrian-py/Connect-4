@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import StartMenu from "./pages/StartMenu";
+import PlayMenu from "./pages/PlayMenu";
+import EndMenu from "./pages/EndMenu";
 
 function App() {
+  const [gamePhase, setGamePhase] = useState<number>(1);
+  const [newWinner, setNewWinner] = useState<string>("");
+  const [lastWinner, setLastWinner] = useState<string>("-");
+
+  const handleChangePhase = (winner?: number) => {
+    switch (gamePhase) {
+      case 1:
+        setGamePhase(gamePhase + 1);
+        break;
+      case 2:
+        setNewWinner(winner === 1 ? "red" : "yellow");
+        setGamePhase(gamePhase + 1);
+        break;
+      case 3:
+        setLastWinner(newWinner);
+        setGamePhase(1);
+        break;
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {gamePhase === 1 ? (
+        <StartMenu handleChangePhase={handleChangePhase} />
+      ) : gamePhase === 2 ? (
+        <PlayMenu
+          lastWinner={lastWinner}
+          handleChangePhase={handleChangePhase}
+        />
+      ) : (
+        <EndMenu newWinner={newWinner} handleChangePhase={handleChangePhase} />
+      )}
+    </>
   );
 }
 
