@@ -8,9 +8,16 @@ export default function EndMenu({
   handleChangePhase,
 }: propsAttribute) {
   return (
-    <main>
-      <h1>{newWinner} wins!</h1>
-      <button onClick={handleChangePhase}>play again</button>
+    <main className="w-full h-screen flex justify-center items-center flex-col text-center gap-4 bg-white">
+      <h1 className="font-bold font-pacifico text-[5rem] text-text">
+        {newWinner === "Draw" ? "It's a draw!" : newWinner + " wins!"}
+      </h1>
+      <button
+        onClick={handleChangePhase}
+        className="w-fit px-[4rem] py-[0.75rem] bg-blue text-white font-montserrat border-2 rounded-3xl text-[2rem] hover:bg-transparent hover:border-blue hover:text-blue active:scale-90 transition-all duration-150 ease-in-out "
+      >
+        play again
+      </button>
     </main>
   );
 }

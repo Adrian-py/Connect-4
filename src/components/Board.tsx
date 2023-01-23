@@ -2,16 +2,24 @@ import { useEffect, useState } from "react";
 import Tile from "./Tile";
 
 import { handleCheckBoard } from "../helpers/gameHelpers";
-import board from "../data/board";
 
 interface propsAttribute {
   handleChangePhase: (winner?: number) => void;
 }
 
 export default function Board({ handleChangePhase }: propsAttribute) {
+  const emptyBoard = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+  ];
+
   const [board, setBoard] = useState<number[][]>([]);
   const [currentTurn, setCurrentTurn] = useState<number>(1);
 
+  // Handle tile drop when user click a col
   const handleDropTile = (col: number) => {
     let boardCopy = board;
 
@@ -21,24 +29,27 @@ export default function Board({ handleChangePhase }: propsAttribute) {
       if (!boardCopy[col][i]) {
         boardCopy[col][i] = currentTurn;
 
-        if (handleCheckBoard(board, col, i, currentTurn) === "win") {
+        let boardStatus = handleCheckBoard(board, col, i, currentTurn);
+
+        if (boardStatus === "win") {
           handleChangePhase(currentTurn);
-          boardCopy = [...initialBoard];
+        } else if (boardStatus === "draw") {
+          handleChangePhase(-1);
         }
 
         break;
       }
     }
 
-    setBoard([...boardCopy]);
+    setBoard(boardCopy);
 
+    // Change current turn
     if (currentTurn === 1) setCurrentTurn(2);
     else setCurrentTurn(1);
   };
 
   useEffect(() => {
-    console.log("run", initialBoard);
-    setBoard([...initialBoard]);
+    setBoard(emptyBoard);
   }, []);
 
   return (

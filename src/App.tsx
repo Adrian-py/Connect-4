@@ -16,7 +16,7 @@ function App() {
         setGamePhase(gamePhase + 1);
         break;
       case 2:
-        setNewWinner(winner === 1 ? "Red" : "Yellow");
+        setNewWinner(winner === -1 ? "Draw" : winner === 1 ? "Red" : "Yellow");
         setGamePhase(gamePhase + 1);
         break;
       case 3:
