@@ -69,7 +69,9 @@ export default function Board({ handleChangePhase }: propsAttribute) {
           );
         })}
       </div>
-      <h2 className="mt-4 font-bold text-[1.75rem]">Blue's turn</h2>
+      <h2 className="mt-4 font-bold text-[1.75rem]">
+        {currentTurn === 1 ? "Red" : "Yellow"}'s turn
+      </h2>
     </div>
   );
 }
