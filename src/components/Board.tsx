@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
 import Tile from "./Tile";
-import initialBoard from "../data/board";
 
-import { handleCheckWin } from "../helpers/gameHelpers";
+import { handleCheckBoard } from "../helpers/gameHelpers";
+import board from "../data/board";
 
 interface propsAttribute {
   handleChangePhase: (winner?: number) => void;
 }
 
 export default function Board({ handleChangePhase }: propsAttribute) {
-  const [board, setBoard] = useState<number[][]>(initialBoard);
+  const [board, setBoard] = useState<number[][]>([]);
   const [currentTurn, setCurrentTurn] = useState<number>(1);
 
   const handleDropTile = (col: number) => {
     let boardCopy = board;
 
-    if (boardCopy[col][0]) {
-      return;
-    }
+    if (boardCopy[col][0]) return;
 
     for (let i = 4; i >= 0; i--) {
       if (!boardCopy[col][i]) {
         boardCopy[col][i] = currentTurn;
 
-        if (handleCheckWin(board, col, i, currentTurn)) {
+        if (handleCheckBoard(board, col, i, currentTurn) === "win") {
           handleChangePhase(currentTurn);
+          boardCopy = [...initialBoard];
         }
+
         break;
       }
     }
@@ -37,7 +37,8 @@ export default function Board({ handleChangePhase }: propsAttribute) {
   };
 
   useEffect(() => {
-    setBoard(initialBoard);
+    console.log("run", initialBoard);
+    setBoard([...initialBoard]);
   }, []);
 
   return (

@@ -7,7 +7,8 @@ import EndMenu from "./pages/EndMenu";
 function App() {
   const [gamePhase, setGamePhase] = useState<number>(1);
   const [newWinner, setNewWinner] = useState<string>("");
-  const [lastWinner, setLastWinner] = useState<string>("-");
+  const [blueScore, setBlueScore] = useState<number>(0);
+  const [yellowScore, setYellowScore] = useState<number>(0);
 
   const handleChangePhase = (winner?: number) => {
     switch (gamePhase) {
@@ -15,11 +16,10 @@ function App() {
         setGamePhase(gamePhase + 1);
         break;
       case 2:
-        setNewWinner(winner === 1 ? "red" : "yellow");
+        setNewWinner(winner === 1 ? "Red" : "Yellow");
         setGamePhase(gamePhase + 1);
         break;
       case 3:
-        setLastWinner(newWinner);
         setGamePhase(1);
         break;
     }
@@ -30,10 +30,7 @@ function App() {
       {gamePhase === 1 ? (
         <StartMenu handleChangePhase={handleChangePhase} />
       ) : gamePhase === 2 ? (
-        <PlayMenu
-          lastWinner={lastWinner}
-          handleChangePhase={handleChangePhase}
-        />
+        <PlayMenu handleChangePhase={handleChangePhase} />
       ) : (
         <EndMenu newWinner={newWinner} handleChangePhase={handleChangePhase} />
       )}

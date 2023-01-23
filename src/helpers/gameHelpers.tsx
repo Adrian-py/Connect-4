@@ -1,10 +1,20 @@
-const handleCheckWin = (
+function handleCheckBoard(
   board: number[][],
   col: number,
   row: number,
   currentTurn: number
-) => {
-  console.log(board, col, row);
+) {
+  if (handleCheckWin(board, col, row, currentTurn)) return "win";
+  else if (handleCheckDraw(board)) return "draw";
+  return "continue";
+}
+
+function handleCheckWin(
+  board: number[][],
+  col: number,
+  row: number,
+  currentTurn: number
+) {
   let maxTileCount = 0,
     tileCount = 1;
 
@@ -89,16 +99,14 @@ const handleCheckWin = (
 
   if (maxTileCount >= 4) return true;
   return false;
-};
+}
 
-const handleCheckFullBoard = (board: number[][]) => {
+function handleCheckDraw(board: number[][]) {
   for (let i = 0; i <= 4; i++) {
-    for (let j = 0; j <= 4; j++) {
-      if (!board[i][j]) return 0;
-    }
+    if (!board[i][0]) return 0;
   }
 
   return 1;
-};
+}
 
-export { handleCheckWin };
+export { handleCheckBoard };

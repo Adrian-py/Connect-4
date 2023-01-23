@@ -1,4 +1,4 @@
-let initialBoard = [
+let board = [
   [0, 0, 0, 0, 1],
   [0, 0, 0, 1, 2],
   [0, 0, 2, 1, 2],
@@ -6,4 +6,4 @@ let initialBoard = [
   [0, 0, 0, 0, 1],
 ];
 
-export default initialBoard;
+export default board;
