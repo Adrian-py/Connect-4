@@ -4,7 +4,7 @@ interface propsAttribute {
 
 export default function StartMenu({ handleChangePhase }: propsAttribute) {
   return (
-    <main className="w-full h-screen flex justify-center items-center flex-col text-center gap-4 bg-white">
+    <main className="w-full h-screen flex justify-center items-center flex-col text-center gap-4 bg-gradient-to-tr from-white to-light-blue">
       <h1 className="font-bold font-pacifico text-[5rem] text-text">
         Connect 4
       </h1>

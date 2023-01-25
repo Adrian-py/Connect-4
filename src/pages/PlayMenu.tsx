@@ -13,7 +13,7 @@ export default function PlayMenu({
   yellowScore,
 }: propsAttribute) {
   return (
-    <main className="relative w-full h-screen flex justify-center items-center flex-col text-center gap-4 bg-white">
+    <main className="relative w-full h-screen flex justify-center items-center flex-col text-center gap-4 bg-gradient-to-tr from-white to-light-blue">
       <Header redScore={redScore} yellowScore={yellowScore} />
       <Board handleChangePhase={handleChangePhase} />
     </main>

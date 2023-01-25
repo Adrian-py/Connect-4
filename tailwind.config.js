@@ -14,6 +14,7 @@ module.exports = {
         blue: "#023E8A",
         yellow: "#F2C94C",
         red: "#EB5757",
+        "light-blue": "#cce3ff",
       },
       keyframes: {
         drop: {
