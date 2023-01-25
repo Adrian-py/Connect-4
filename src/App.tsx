@@ -10,6 +10,7 @@ function App() {
   const [redScore, setRedScore] = useState<number>(0);
   const [yellowScore, setYellowScore] = useState<number>(0);
 
+  // Handle changing game phase
   const handleChangePhase = (winner?: number) => {
     switch (gamePhase) {
       case 1:
@@ -21,7 +22,7 @@ function App() {
 
         // Change scores
         if (winner === 1) setRedScore(redScore + 1);
-        else if (winner == 2) setYellowScore(yellowScore + 1);
+        else if (winner === 2) setYellowScore(yellowScore + 1);
 
         setGamePhase(gamePhase + 1);
         break;

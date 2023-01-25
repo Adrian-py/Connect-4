@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Tile from "./Tile";
 
 import { handleCheckBoard } from "../helpers/gameHelpers";
@@ -15,7 +16,6 @@ export default function Board({ handleChangePhase }: propsAttribute) {
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
   ];
-
   const [board, setBoard] = useState<number[][]>([]);
   const [currentTurn, setCurrentTurn] = useState<number>(1);
 
@@ -53,12 +53,18 @@ export default function Board({ handleChangePhase }: propsAttribute) {
   }, []);
 
   return (
-    <div className="text-text">
+    <motion.div
+      className="text-text"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className="w-fit h-fit px-5 grid grid-cols-5 bg-blue rounded-[25px]">
         {board.map((col, i) => {
           return (
             <div
-              className="py-6 px-1 grid grid-rows-[repeat(5, 1fr)] gap-2 transition-all duration-100 ease-in-out hover:bg-gray-500/60 cursor-pointer"
+              className="relative py-6 px-1 grid grid-rows-[repeat(5, 1fr)] gap-2 transition-all duration-100 ease-in-out hover:bg-gray-500/60 cursor-pointer"
               onClick={() => handleDropTile(i)}
               key={i}
             >
@@ -72,6 +78,6 @@ export default function Board({ handleChangePhase }: propsAttribute) {
       <h2 className="mt-4 font-bold text-[1.75rem]">
         {currentTurn === 1 ? "Red" : "Yellow"}'s turn
       </h2>
-    </div>
+    </motion.div>
   );
 }

@@ -11,8 +11,11 @@ export default function Header({ redScore, yellowScore }: propsTypes) {
       </h1>
       <p className="flex items-center gap-4 text-[1.5rem]">
         Red
-        <span className="text-[2rem] font-bold"> {redScore} </span>-
-        <span className="text-[2rem] font-bold"> {yellowScore} </span>
+        <span className="text-[2rem] font-bold text-red"> {redScore} </span>-
+        <span className="text-[2rem] font-bold text-yellow">
+          {" "}
+          {yellowScore}{" "}
+        </span>
         Yellow
       </p>
     </header>
