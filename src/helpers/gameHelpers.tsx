@@ -1,3 +1,4 @@
+// Check board condition (win or draw)
 function handleCheckBoard(
   board: number[][],
   col: number,
@@ -9,6 +10,7 @@ function handleCheckBoard(
   return "continue";
 }
 
+// Check if current move produces a win
 function handleCheckWin(
   board: number[][],
   col: number,
@@ -101,6 +103,7 @@ function handleCheckWin(
   return false;
 }
 
+// Check if board if full
 function handleCheckDraw(board: number[][]) {
   for (let i = 0; i <= 4; i++) {
     if (!board[i][0]) return 0;
